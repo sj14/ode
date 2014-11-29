@@ -50,7 +50,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 	fmt.Println(parameters)
 
 	// initialize 'outer slice'
-	ySlice := make([][]float64, steps)
+	ySlice := make([][]float64, steps+1)
 	// initialize first 'inner slice'
 	ySlice[0] = make([]float64, parameters+1)
 
@@ -71,7 +71,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 	var k3p []float64 = make([]float64, parameters)
 	var k4p []float64 = make([]float64, parameters)
 
-	for step := 1; step < steps; step++ {
+	for step := 1; step <= steps; step++ {
 		// initialize 'inner slice'
 		ySlice[step] = make([]float64, parameters+1)
 
@@ -89,7 +89,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 
 		// generate the parameter for k2
 		for value := 0; value < parameters; value++ {
-			k2p[value] = yn[value] + 0.5*k1[value]
+			k2p[value] = yn[value] + 0.5*h*k1[value]
 		}
 
 		// generate k2
@@ -99,7 +99,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 
 		// generate the parameter for k3
 		for value := 0; value < parameters; value++ {
-			k3p[value] = yn[value] + 0.5*k2[value]
+			k3p[value] = yn[value] + 0.5*h*k2[value]
 		}
 
 		// generate k3
@@ -109,7 +109,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 
 		// generate the parameter for k4
 		for value := 0; value < parameters; value++ {
-			k4p[value] = yn[value] + fn(t, k3p)[value]
+			k4p[value] = yn[value] + h*fn(t, k3p)[value]
 		}
 
 		t += h / 2
