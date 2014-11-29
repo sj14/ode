@@ -12,7 +12,7 @@ func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float6
 	fmt.Println(parameters)
 
 	// initialize 'outer slice'
-	ySlice := make([][]float64, steps)
+	ySlice := make([][]float64, steps+1)
 	// initialize first 'inner slice'
 	ySlice[0] = make([]float64, parameters+1)
 
@@ -23,7 +23,7 @@ func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float6
 
 	yn := make([]float64, parameters)
 
-	for step := 1; step < steps; step++ {
+	for step := 1; step <= steps; step++ {
 		t += h
 		// initialize 'inner slice'
 		ySlice[step] = make([]float64, parameters+1)
