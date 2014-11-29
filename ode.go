@@ -21,6 +21,8 @@ func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float6
 		ySlice[0][i+1] = y[i]
 	}
 
+	yn := make([]float64, parameters)
+
 	for step := 1; step < steps; step++ {
 		t += h
 		// initialize 'inner slice'
@@ -28,7 +30,11 @@ func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float6
 		ySlice[step][0] = t
 
 		for value := 0; value < parameters; value++ {
-			y[value] += h * fn(t, y)[value]
+			yn[value] = ySlice[step-1][value+1]
+		}
+
+		for value := 0; value < parameters; value++ {
+			y[value] += h * fn(t, yn)[value]
 			ySlice[step][value+1] = y[value]
 		}
 	}
@@ -117,7 +123,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 
 		// generate yn (saved in the slice)
 		for value := 0; value < parameters; value++ {
-			ySlice[step][value+1] = ySlice[step-1][value+1] + (k1[value]+2*k2[value]+2*k3[value]+k4[value])/6.0
+			ySlice[step][value+1] = ySlice[step-1][value+1] + h*(k1[value]+2*k2[value]+2*k3[value]+k4[value])/6.0
 		}
 	}
 	return ySlice
