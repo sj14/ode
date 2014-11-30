@@ -16,8 +16,8 @@ func main() {
 	yStart = append(yStart, 400)
 	yStart = append(yStart, 100)
 
-	//y := ode.EulerForward(0, 1, 100, 0, yStart, sir)
-	y := ode.RungeKutta4(0, 0.5, 100, 0, yStart, sir)
+	y := ode.EulerForward(0, 0.9, 100, 0, yStart, sir)
+	//y := ode.RungeKutta4(0, 0.9, 100, 0, yStart, sir)
 
 	for _, val := range y {
 		fmt.Println(val)
