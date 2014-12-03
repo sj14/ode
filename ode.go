@@ -2,29 +2,25 @@
 // Method for solving ordinary differential equations.
 package ode
 
-import "fmt"
-
-func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
-	var steps int = int((to - from) / h)
+func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
+	var steps int = int((to-from)/h) + 1
 	var parameters = len(y)
-
-	fmt.Println(steps)
-	fmt.Println(parameters)
+	yn := make([]float64, parameters)
+	t := from
 
 	// initialize 'outer slice'
-	ySlice := make([][]float64, steps+1)
+	ySlice := make([][]float64, steps)
 	// initialize first 'inner slice'
 	ySlice[0] = make([]float64, parameters+1)
 
 	// fill with start values
+	ySlice[0][0] = t
 	for i := 0; i < parameters; i++ {
 		ySlice[0][i+1] = y[i]
 	}
 
-	yn := make([]float64, parameters)
-
-	for step := 1; step <= steps; step++ {
-		t = h * float64(step)
+	for step := 1; step < steps; step++ {
+		t = h*float64(step) + from
 		// initialize 'inner slice'
 		ySlice[step] = make([]float64, parameters+1)
 		ySlice[step][0] = t
@@ -42,19 +38,18 @@ func EulerForward(from, h, to, t float64, y []float64, fn func(float64, []float6
 }
 
 // func RungeKutta4 is an implementation of the 4th order Runge-Kutta method
-func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
-	var steps int = int((to - from) / h)
+func RungeKutta4(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
+	var steps int = int((to-from)/h) + 1
 	var parameters = len(y)
-
-	fmt.Println(steps)
-	fmt.Println(parameters)
+	t := from
 
 	// initialize 'outer slice'
-	ySlice := make([][]float64, steps+1)
+	ySlice := make([][]float64, steps)
 	// initialize first 'inner slice'
 	ySlice[0] = make([]float64, parameters+1)
 
 	// fill with start values
+	ySlice[0][0] = t
 	for i := 0; i < parameters; i++ {
 		ySlice[0][i+1] = y[i]
 	}
@@ -71,7 +66,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 	var k3p []float64 = make([]float64, parameters)
 	var k4p []float64 = make([]float64, parameters)
 
-	for step := 1; step <= steps; step++ {
+	for step := 1; step < steps; step++ {
 		// initialize 'inner slice'
 		ySlice[step] = make([]float64, parameters+1)
 
@@ -85,7 +80,7 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 			k1[value] = fn(t, yn)[value]
 		}
 
-		t = float64(step-1)*h + h/2
+		t = float64(step-1)*h + h/2 + from
 
 		// generate the parameter for k2
 		for value := 0; value < parameters; value++ {
@@ -112,14 +107,14 @@ func RungeKutta4(from, h, to, t float64, y []float64, fn func(float64, []float64
 			k4p[value] = yn[value] + h*fn(t, k3p)[value]
 		}
 
-		t = float64(step) * h
+		t = float64(step)*h + from
 
 		// generate k4
 		for value := 0; value < parameters; value++ {
 			k4[value] = fn(t, k4p)[value]
 		}
 
-		ySlice[step][0] = h * float64(step)
+		ySlice[step][0] = h*float64(step) + from
 
 		// generate yn (saved in the slice)
 		for value := 0; value < parameters; value++ {
