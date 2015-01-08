@@ -6,20 +6,22 @@ import "github.com/sj14/ode"
 
 func main() {
 
-	yStart := []float64{}
+	yStartPop := []float64{}
+	yStartSIR := []float64{}
 
 	// Population Growth Simple Start Values
-	/*
-		yStart = append(yStart, 10)
-	*/
+	yStartPop = append(yStartPop, 10)
 
 	// SIR Start Values
-	yStart = append(yStart, 700)
-	yStart = append(yStart, 400)
-	yStart = append(yStart, 100)
+	yStartSIR = append(yStartSIR, 700)
+	yStartSIR = append(yStartSIR, 400)
+	yStartSIR = append(yStartSIR, 100)
 
-	 y := ode.EulerForward(0, 0.5, 100, yStart, sir)
-	//y := ode.RungeKutta4(0, 0.5, 100, yStart, sir)
+	//y := ode.EulerForward(0, 0.5, 100, yStartPop, populationGrowthSimple)
+	//y := ode.EulerForward(0, 0.5, 100, yStartSIR, sir)
+	//y := ode.RungeKutta4(0, 0.5, 100, yStartPop, populationGrowthSimple)
+	y := ode.RungeKutta4(0, 0.5, 100, yStartSIR, sir)
+
 
 	// Output the results to the console
 	for _, val := range y {
