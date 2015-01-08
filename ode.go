@@ -5,8 +5,8 @@ package ode
 func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
 	var steps int = int((to-from)/h) + 1
 	var parameters = len(y)
+	var t = from
 	yn := make([]float64, parameters)
-	t := from
 
 	// initialize 'outer slice'
 	ySlice := make([][]float64, steps)
@@ -41,7 +41,7 @@ func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) 
 func RungeKutta4(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
 	var steps int = int((to-from)/h) + 1
 	var parameters = len(y)
-	t := from
+	var t = from
 
 	// initialize 'outer slice'
 	ySlice := make([][]float64, steps)

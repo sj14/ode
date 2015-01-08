@@ -8,17 +8,20 @@ func main() {
 
 	yStart := []float64{}
 
-	// Population Growth Simple
-	//yStart = append(yStart, 10)
+	// Population Growth Simple Start Values
+	/*
+		yStart = append(yStart, 10)
+	*/
 
-	// SIR
+	// SIR Start Values
 	yStart = append(yStart, 700)
 	yStart = append(yStart, 400)
 	yStart = append(yStart, 100)
 
-	//y := ode.EulerForward(50, 0.5, 100, yStart, sir)
-	y := ode.RungeKutta4(50, 0.5, 100, yStart, sir)
+	 y := ode.EulerForward(0, 0.5, 100, yStart, sir)
+	//y := ode.RungeKutta4(0, 0.5, 100, yStart, sir)
 
+	// Output the results to the console
 	for _, val := range y {
 		fmt.Println(val)
 	}
