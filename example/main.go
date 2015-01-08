@@ -22,7 +22,6 @@ func main() {
 	//y := ode.RungeKutta4(0, 0.5, 100, yStartPop, populationGrowthSimple)
 	y := ode.RungeKutta4(0, 0.5, 100, yStartSIR, sir)
 
-
 	// Output the results to the console
 	for _, val := range y {
 		fmt.Println(val)
