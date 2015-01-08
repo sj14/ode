@@ -19,11 +19,11 @@ func TestMain(m *testing.M) {
 }
 
 func BenchmarkEulerForwardPopulation(b *testing.B) {
-	EulerForward(0, 0.1, 1000, yStartPop, populationGrowthSimple)
+	EulerForward(0, 0.1, 10000, yStartPop, populationGrowthSimple)
 }
 
 func BenchmarkRungeKuttaPopulation(b *testing.B) {
-	RungeKutta4(0, 0.1, 1000, yStartPop, populationGrowthSimple)
+	RungeKutta4(0, 0.1, 10000, yStartPop, populationGrowthSimple)
 }
 
 func BenchmarkEulerForwardSIR(b *testing.B) {
