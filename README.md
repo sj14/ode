@@ -3,7 +3,7 @@ ode
 
 ODE package for the go programming language (golang)
 
-[![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode)
+[![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode) [![Build Status](https://travis-ci.org/sj14/ode.svg)](https://travis-ci.org/sj14/ode)
 
 ## Example
 ```go
@@ -14,7 +14,7 @@ import "fmt"
 import "github.com/sj14/ode"
 
 func main() {
-  
+
   yStartPop := []float64{}
   yStartSIR := []float64{}
 
