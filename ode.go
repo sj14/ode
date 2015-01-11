@@ -2,7 +2,7 @@
 // Method for solving ordinary differential equations.
 package ode
 
-// EulerForward is an implementation of the implicit Euler method.
+// EulerForward is an implementation of the explicit Euler method.
 func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
 	var steps = int((to-from)/h) + 1
 	var parameters = len(y)
