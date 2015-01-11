@@ -2,8 +2,9 @@
 // Method for solving ordinary differential equations.
 package ode
 
+// EulerForward is an implementation of the implicit Euler method.
 func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
-	var steps int = int((to-from)/h) + 1
+	var steps = int((to-from)/h) + 1
 	var parameters = len(y)
 	var t = from
 	yn := make([]float64, parameters)
@@ -30,16 +31,16 @@ func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) 
 		}
 
 		for value := 0; value < parameters; value++ {
-			y[value] += h * fn(t, yn)[value]
-			ySlice[step][value+1] = y[value]
+			//y[value] += h * fn(t, yn)[value]
+			ySlice[step][value+1] = ySlice[step-1][value+1] + h*fn(t, yn)[value]
 		}
 	}
 	return ySlice
 }
 
-// func RungeKutta4 is an implementation of the 4th order Runge-Kutta method
+// RungeKutta4 is an implementation of the 4th order Runge-Kutta method.
 func RungeKutta4(from, h, to float64, y []float64, fn func(float64, []float64) []float64) [][]float64 {
-	var steps int = int((to-from)/h) + 1
+	var steps = int((to-from)/h) + 1
 	var parameters = len(y)
 	var t = from
 
@@ -54,17 +55,17 @@ func RungeKutta4(from, h, to float64, y []float64, fn func(float64, []float64) [
 		ySlice[0][i+1] = y[i]
 	}
 
-	var k1 []float64 = make([]float64, parameters)
-	var k2 []float64 = make([]float64, parameters)
-	var k3 []float64 = make([]float64, parameters)
-	var k4 []float64 = make([]float64, parameters)
+	var k1 = make([]float64, parameters)
+	var k2 = make([]float64, parameters)
+	var k3 = make([]float64, parameters)
+	var k4 = make([]float64, parameters)
 
-	var yn []float64 = make([]float64, parameters)
+	var yn = make([]float64, parameters)
 
 	// the parameters to pass into the corresponding function calls
-	var k2p []float64 = make([]float64, parameters)
-	var k3p []float64 = make([]float64, parameters)
-	var k4p []float64 = make([]float64, parameters)
+	var k2p = make([]float64, parameters)
+	var k3p = make([]float64, parameters)
+	var k4p = make([]float64, parameters)
 
 	for step := 1; step < steps; step++ {
 		// initialize 'inner slice'

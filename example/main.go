@@ -17,15 +17,32 @@ func main() {
 	yStartSIR = append(yStartSIR, 400)
 	yStartSIR = append(yStartSIR, 100)
 
-	//y := ode.EulerForward(0, 0.5, 100, yStartPop, populationGrowthSimple)
-	//y := ode.EulerForward(0, 0.5, 100, yStartSIR, sir)
-	//y := ode.RungeKutta4(0, 0.5, 100, yStartPop, populationGrowthSimple)
-	y := ode.RungeKutta4(0, 0.5, 100, yStartSIR, sir)
+	eulerPop := ode.EulerForward(0, 10, 100, yStartPop, populationGrowthSimple)
 
-	// Output the results to the console
-	for _, val := range y {
+	for _, val := range eulerPop {
 		fmt.Println(val)
 	}
+
+	fmt.Println(yStartPop)
+
+	rungePop := ode.RungeKutta4(0, 10, 100, yStartPop, populationGrowthSimple)
+
+	for _, val := range rungePop {
+		fmt.Println(val)
+	}
+
+	eulerSIR := ode.EulerForward(0, 10, 100, yStartSIR, sir)
+
+	for _, val := range eulerSIR {
+		fmt.Println(val)
+	}
+
+	rungeSIR := ode.RungeKutta4(0, 10, 100, yStartSIR, sir)
+
+	for _, val := range rungeSIR {
+		fmt.Println(val)
+	}
+
 }
 
 func populationGrowthSimple(t float64, y []float64) []float64 {
