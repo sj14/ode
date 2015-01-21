@@ -24,7 +24,7 @@ func main() {
   yStartSIR = append(yStartSIR, 400)
   yStartSIR = append(yStartSIR, 100)
 
-  y := ode.RungeKutta4(0, 0.5, 100, yStartSIR, sir)
+  y := ode.RungeKutta4(0, 10, 100, yStartSIR, sir)
 
   // Output the results to the console
   for _, val := range y {
