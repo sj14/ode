@@ -31,7 +31,6 @@ func EulerForward(from, h, to float64, y []float64, fn func(float64, []float64) 
 		}
 
 		for value := 0; value < parameters; value++ {
-			//y[value] += h * fn(t, yn)[value]
 			ySlice[step][value+1] = ySlice[step-1][value+1] + h*fn(t, yn)[value]
 		}
 	}
