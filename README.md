@@ -29,6 +29,7 @@ func main() {
   }
 }
 
+// The function to calculate
 func sir(t float64, y []float64) []float64 {
   result := make([]float64, 3)
   result[0] = -0.0001 * y[1] * y[0]
