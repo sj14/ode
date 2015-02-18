@@ -12,9 +12,7 @@ var yStartPop = []float64{}
 
 func init() {
 	// SIR Start Values
-	yStartSIR = append(yStartSIR, 700)
-	yStartSIR = append(yStartSIR, 400)
-	yStartSIR = append(yStartSIR, 100)
+	yStartSIR = []float64{700, 400, 100}
 
 	// PopulationGrowthSimple Start Values
 	yStartPop = append(yStartPop, 10)

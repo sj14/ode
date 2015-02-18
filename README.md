@@ -1,9 +1,8 @@
 ode
 ===
+[![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode) [![Build Status](https://travis-ci.org/sj14/ode.svg)](https://travis-ci.org/sj14/ode)
 
 A package for the go programming language to solve ordinary differential equations.
-
-[![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode) [![Build Status](https://travis-ci.org/sj14/ode.svg)](https://travis-ci.org/sj14/ode)
 
 ## Requirements
 
@@ -19,11 +18,9 @@ import "github.com/sj14/ode"
 
 func main() {
   // SIR Start Values
-  yStartSIR := []float64{}
-  yStartSIR = append(yStartSIR, 700)
-  yStartSIR = append(yStartSIR, 400)
-  yStartSIR = append(yStartSIR, 100)
+  yStartSIR := []float64{700, 400, 100}
 
+  // Do the calculation
   y := ode.RungeKutta4(0, 10, 100, yStartSIR, sir)
 
   // Output the results to the console
