@@ -6,7 +6,7 @@ A package for the go programming language to solve ordinary differential equatio
 
 ## Requirements
 
-- Go >= 1.4
+- Go Version >= 1.0
 
 ## Example
 ```go
