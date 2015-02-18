@@ -7,22 +7,17 @@ import (
 	"github.com/sj14/ode"
 )
 
-var yStartSIR = []float64{}
-var yStartPop = []float64{}
-
-func init() {
-	// SIR Start Values
-	yStartSIR = []float64{700, 400, 100}
-
-	// PopulationGrowthSimple Start Values
-	yStartPop = append(yStartPop, 10)
-}
+// PopulationGrowthSimple Start Values
+var yStartPop = []float64{10}
 
 func populationGrowthSimple(t float64, y []float64) []float64 {
 	result := make([]float64, 1)
 	result[0] = 0.008 * y[0]
 	return result
 }
+
+// SIR Start Values
+var yStartSIR = []float64{700, 400, 100}
 
 func sir(t float64, y []float64) []float64 {
 	result := make([]float64, 3)
