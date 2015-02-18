@@ -2,7 +2,6 @@ package ode_test
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/sj14/ode"
@@ -11,7 +10,7 @@ import (
 var yStartSIR = []float64{}
 var yStartPop = []float64{}
 
-func TestMain(m *testing.M) {
+func init() {
 	// SIR Start Values
 	yStartSIR = append(yStartSIR, 700)
 	yStartSIR = append(yStartSIR, 400)
@@ -19,8 +18,6 @@ func TestMain(m *testing.M) {
 
 	// PopulationGrowthSimple Start Values
 	yStartPop = append(yStartPop, 10)
-
-	os.Exit(m.Run())
 }
 
 func populationGrowthSimple(t float64, y []float64) []float64 {
