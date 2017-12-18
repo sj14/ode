@@ -19,7 +19,7 @@ func main() {
   // SIR Start Values
   yStartSIR := []float64{700, 400, 100}
 
-  // Do the calculation
+  // Do the calculation (start, step size, end, start values, function)
   y := ode.RungeKutta4(0, 10, 100, yStartSIR, sir)
 
   // Output the results to the console
