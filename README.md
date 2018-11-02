@@ -1,4 +1,4 @@
-ode [![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode) [![Build Status](https://travis-ci.org/sj14/ode.svg)](https://travis-ci.org/sj14/ode) [![Coverage Status](https://coveralls.io/repos/sj14/ode/badge.svg)](https://coveralls.io/r/sj14/ode)
+ode [![GoDoc](https://godoc.org/github.com/sj14/ode?status.png)](https://godoc.org/github.com/sj14/ode) [![Build Status](https://travis-ci.org/sj14/ode.svg)](https://travis-ci.org/sj14/ode) [![Coverage Status](https://coveralls.io/repos/github/sj14/ode/badge.svg?branch=master)](https://coveralls.io/github/sj14/ode?branch=master)
 ===
 
 A package for the go programming language to solve ordinary differential equations.
